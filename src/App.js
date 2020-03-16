@@ -1,19 +1,44 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Person from './Person/Person';
 import './App.css';
 
-function App() {
+const App = props => {
+ const [ personsState, setPersonsState] = useState({
+    persons: [
+      { name: 'Mahid', age: 24},
+      { name: 'sajib', age: 23}
+    ]
+   
+  });
+
+  const [otherState, setOtherState] = useState('Some other value');
+
+  console.log(personsState, otherState);
+
+  const switchNameHandler = () => {
+    setPersonsState({
+      persons: [
+        { name: 'Arafat', age: 24},
+        { name: 'sajib', age: 23}
+      ]
+    });
+  };
   
   return (
     <div className="App">
       
       <h1>Hi there</h1>
-      <Person name="Mahid" age = "24"/>
-      <Person name="Jeny" age = "23">Music</Person>
+      <button onClick= {switchNameHandler}>Switch button</button>
+      <Person name={personsState.persons[0].name} age = {personsState.persons[0].age}/>
+      <Person name={personsState.persons[1].name} age = {personsState.persons[1].age}>Music</Person>
     
 
     </div>
   );
+
 }
 
 export default App;
+
+
+
